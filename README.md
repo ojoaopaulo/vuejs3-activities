@@ -46,3 +46,9 @@ cd chapter-01
 npm install
 npm run dev
 ```
+
+## 📖 Reference
+
+This project is based on the book [**Frontend Development Projects with Vue.js 3**](https://a.co/d/aiiew7M) by Maya Shavin and Raymond Camden.
+
+- [Official GitHub repository](https://github.com/PacktPublishing/Frontend-Development-Projects-with-Vue.js-3)
