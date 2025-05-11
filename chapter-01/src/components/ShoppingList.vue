@@ -2,7 +2,7 @@
 <script setup>
     import { ref } from 'vue'; // was not mentioned in this chapter
 
-    const list = ref(['Banana'])
+    const list = ref([])
     const newItem = ref('')
 
     const addItem = () => {
@@ -22,16 +22,16 @@
     <div class="list-container">
         <h1>Shopping list</h1>
         <div class="list-form">
-            <input type="text" v-model="newItem" @keyup.enter="addItem" placeholder="Press enter to add new item"/>
-            <button @click.prevent="addItem">Add item</button>
+            <input type="text" v-model="newItem" data-testid="item-input" @keyup.enter="addItem" placeholder="Press enter to add new item"/>
+            <button @click.prevent="addItem" data-testid="item-add">Add item</button>
         </div>
         <ul class="list" v-if="list.length > 0">
-            <li v-for="(item, n) in list" :key="n">
+            <li v-for="(item, n) in list" :key="n" data-testid="list-item">
                 {{ item }}
-                <button @click.prevent="removeItem(n)">REMOVE</button>
+                <button @click.prevent="removeItem(n)" data-testid="remove-button">REMOVE</button>
             </li>
         </ul>
-        <button @click.prevent="clearList" class="btn-delete">Delete all</button>
+        <button @click.prevent="clearList" class="btn-delete" data-testid="clear-button">Delete all</button>
     </div>
 </template>
 
