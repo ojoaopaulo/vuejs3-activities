@@ -20,8 +20,9 @@ Each chapter ends with a hands-on project that puts into practice the concepts l
 This repository is meant to:
 
 - Help consolidate knowledge through practical exercises
-- Serve as a reference for future Vue.js projects
 - Track learning progress chapter by chapter
+- Serve as a reference for future Vue.js projects
+
 
 ## 📁 Structure
 
@@ -32,6 +33,7 @@ Each folder corresponds to a chapter's final activity:
 ...
 /chapter-13/
 ```
+- Each chapter has its own README.md file, containing the description of the activity, my notes and how to run the project.
 
 ## 🚀 How to run
 
@@ -42,7 +44,7 @@ Each folder corresponds to a chapter's final activity:
 ### Running a project
 
 ```bash
-cd chapter-01
+cd chapter-XX
 npm install
 npm run dev
 ```
