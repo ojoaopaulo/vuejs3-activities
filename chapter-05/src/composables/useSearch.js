@@ -1,0 +1,16 @@
+import { computed, ref } from 'vue';
+
+export const useSearch = (items) => {
+    const searchTerm = ref('')
+    const filters = ref(['title'])
+
+    const filteredSearch = computed(() => {
+        return items.value.filter(item => {
+            return filters.value.some(filter => {
+                return item[filter].toLowerCase().includes(searchTerm.value.toLowerCase())
+            })
+        })
+    })
+
+    return { searchTerm, filters, filteredSearch }
+}
