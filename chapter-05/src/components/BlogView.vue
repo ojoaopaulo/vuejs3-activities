@@ -13,10 +13,12 @@ const { blogs, isLoading, error, addItem, removeItem } = useBlogs()
         <div v-if="showEditor">
             <BlogEditor @add-new-item="addItem" @close-editor="showEditor = !showEditor"/>
         </div>
-        <div class="button-container">
-            <button @click="showEditor = !showEditor" class="toggle-button">Open editor</button>
+        <div class="blog-container">
+            <div class="editor-button-container">
+                <span @click="showEditor = !showEditor" class="editor-button">Open editor</span>
+            </div>
+            <Blogs :blogs="blogs" :is-loading="isLoading" :error="error" @delete-blog="removeItem"/>
         </div>
-        <Blogs :blogs="blogs" :is-loading="isLoading" :error="error" @delete-blog="removeItem"/>
     </main>
 </template>
 
@@ -25,24 +27,30 @@ main {
     padding: 16px;
 }
 
+.editor-button-container {
+    display: flex;
+    justify-content: end;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px;
+}
+
 .blog-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    padding: 6px 12px;
 }
 
-.button-container {
-    position: absolute;
-    right: 0;
-    padding: 0 12px;
-}
-
-.toggle-button {
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: #e2e2e2;
-    padding: 8px;
+.editor-button {
+    border: none;
+    background-color: transparent;
     cursor: pointer;
+}
+
+.editor-button:hover {
+    border-bottom: 1px solid black;
+    transition-duration: 500ms;
 }
 
 </style>

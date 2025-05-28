@@ -1,24 +1,41 @@
-# chapter-05
+# 📗 Chapter-05
 
-This template should help get you started developing with Vue 3 in Vite.
+The objective of this chapter is to create a blog application using `Composition API Components` and `Composables`. The app should display the blog posts to the user, allow them to remove any post, and create new blog entries.
+- View the [**official solution for Activity 5.01**](https://github.com/PacktPublishing/Frontend-Development-Projects-with-Vue.js-3/blob/v2-edition/Chapter05/Activity5.01)
 
-## Recommended IDE Setup
+## 🧠 Knowledge from the chapter
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Creating components with Composition API
 
-## Customize configuration
+- Using reactive data with `ref()`and `reactive()`
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Composition API lifecycle hooks 
+
+- Composables (custom hooks)
+
+## 🛠️ Notes and Challenges
+
+- This activity requires using **Contentful**, a headless CMS also introduced in Chapter 2.
+
+- Three components were created:
+    - **Blogs.vue** - Renders the blog list and search field 
+    - **BlogEditor.vue** - A blog editor for creating new posts
+    - **BlogView.vue** - Renders both Blogs and BlogEditor components
+
+- Three composables were also implemented: 
+    - `useListAction` - Defines methods to add and remove items from the list
+    - `useSearch` - Applies filters selected by the user
+    - `useBlogs` - Fetches data from Contentful and initialize actions from `useListAction`
 
 ## Project Setup
 
-```sh
+```bash
 npm install
 ```
 
 ### Compile and Hot-Reload for Development
 
-```sh
+```bash
 npm run dev
 ```
 
@@ -26,10 +43,4 @@ npm run dev
 
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```

@@ -1,16 +1,11 @@
 <script setup>
 import { useSearch } from '@/composables/useSearch';
-import { onBeforeMount, onMounted, toRef, computed, watch, ref } from 'vue';
+import { toRef } from 'vue';
 
 defineEmits(['deleteBlog'])
 const props = defineProps(['blogs', 'isLoading', 'error'])
 const blogs = toRef(props, 'blogs')
 const { searchTerm, filters, filteredSearch } = useSearch(blogs)
-const testSelect = ref('')
-
-watch((testSelect), () => {
-    console.log(testSelect.value)
-})
 </script>
 
 <template>
@@ -38,15 +33,28 @@ watch((testSelect), () => {
         </div>
         <ul class="blog-list">
             <li v-for="blog in filteredSearch" :key="blog.slug" class="blog-item">
-                <div class="item-title">
+                <div class="item-header">
                     <h2>{{ blog.title }}</h2>
                     <button @click="$emit('deleteBlog', blog.slug)" class="delete-item-button">Delete</button>
                 </div>
                 <div>
                     <img v-if="blog.heroImage" :src="`${blog.heroImage.fields.file.url}?fit=scale&w=350&h=196`"/>
                 </div>
-                <p>{{ blog.description }}</p>
-                <p class="item-author">By {{ blog.author || 'Anonymous' }}</p>
+                <p class="item-description">{{ blog.description }}</p>
+                <div class="item-footer">
+                    <p class="item-author">By {{ blog.author || 'Anonymous' }}</p>
+                     <span class="item-author">
+                                {{ 
+                                    new Date(blog.publishDate)
+                                        .toLocaleDateString('en-US', { 
+                                            weekday: 'short', 
+                                            month: 'short', 
+                                            day: '2-digit',
+                                            year: 'numeric'
+                                         }).toUpperCase()
+                                }}
+                            </span>
+                </div>
             </li>
         </ul>
     </div>
@@ -63,7 +71,7 @@ watch((testSelect), () => {
 .search-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
 }
@@ -90,10 +98,11 @@ watch((testSelect), () => {
 
 .blog-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 12px;
     list-style: none;
     padding: 12px 0;
+    width: 100%;
 }
 
 .blog-item {
@@ -101,13 +110,17 @@ watch((testSelect), () => {
     flex-direction: column;
     gap: 8px;
     padding: 12px;
-    border: 1px red solid;
+    border-bottom: 1px solid black;
 }
 
-.item-title {
+.item-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.item-description {
+    overflow-wrap: break-word;
 }
 
 .delete-item-button {
@@ -118,7 +131,9 @@ watch((testSelect), () => {
     cursor: pointer;
 }
 
-.item-author {
+.item-footer {
+    display: flex;
+    justify-content: space-between;
     font-size: small;
 }
 

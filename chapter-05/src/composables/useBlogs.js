@@ -1,5 +1,5 @@
 import { client } from "@/services/contentful"
-import { onMounted, ref, reactive, onBeforeMount } from "vue"
+import { ref, onBeforeMount } from "vue"
 import { useListAction } from "./useListAction"
 
 export const useBlogs = () => {

@@ -46,15 +46,17 @@ const addNewItem = () => {
 
         <div class="editor-entries">
             <label>Description</label>
-            <textarea v-model="description"></textarea>
+            <textarea v-model="description" cols="30" rows="5" maxlength="250"></textarea>
         </div>
 
         <div class="editor-entries">
             <label>Id</label>
-            <input v-model="slug" disabled/>
+            <input v-model="slug" disabled style="cursor: not-allowed;"/>
         </div>
 
-        <button @click="addNewItem">Add</button>
+        <div class="add-button-container">
+            <button @click="addNewItem" class="add-button">Send</button>
+        </div>
     </div>
 </template>
 
@@ -77,11 +79,12 @@ const addNewItem = () => {
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-
+    justify-content: space-around;
+    align-items: center;
+    
+    min-height: 350px;
     max-height: 90vh;
-    max-width: 500px;
+    max-width: 400px;
     width: 90vw;
     overflow-y: auto;
 
@@ -95,10 +98,29 @@ const addNewItem = () => {
 
 .editor-entries {
     display: flex;
-    gap: 8px;
-    padding: 6px;
-    justify-content: space-between;
     width: 100%;
+}
+
+.editor-entries label {
+    position: absolute;
+    transform: translate(0, -50%);
+    left: 30px;
+    padding: 0 1px;
+    background-color: white;
+}
+
+.editor-entries input {
+    outline: none;
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 8px;
+    width: 230px;
+}
+
+.editor-entries textarea {
+    outline: none;
+    padding: 12px;
+    border: 1px solid black;
 }
 
 .close-button {
@@ -112,6 +134,19 @@ const addNewItem = () => {
     padding: 6px;
     font-size: 1rem;
     
+    cursor: pointer;
+}
+
+.add-button-container {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.add-button {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
     cursor: pointer;
 }
 
